@@ -1,0 +1,3 @@
+pnpm install
+pnpm dlx expo-doctor
+pnpm exec expo start --clear
