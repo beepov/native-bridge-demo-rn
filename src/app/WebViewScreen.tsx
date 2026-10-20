@@ -26,7 +26,7 @@ import type {
 import { dispatchResponse } from "@/bridge/dispatch-response";
 
 const WEBSITE_URL =
-    "https://578c-203-147-139-46.ngrok-free.app/test";
+    "https://2915-203-147-139-46.ngrok-free.app/test";
 
 export default function WebViewScreen() {
     const webViewRef = useRef<WebView>(null);
@@ -36,6 +36,18 @@ export default function WebViewScreen() {
     const [permission, requestPermission] = useCameraPermissions();
 
     const handlers: Record<string, NativeHandler> = {
+        "identity.getUser": (payload) => {
+
+            const user = {
+                id: "1",
+                firstName: "Chea",
+                lastName: "Socheat",
+                email: "cheasocheat.km@gmail.com"
+            }
+
+            console.log(`User: `, user);
+            return user;
+        },
         "app.alert": (payload) => {
             const data = payload as {
                 title?: string;
@@ -146,7 +158,6 @@ export default function WebViewScreen() {
                 source={{ uri: WEBSITE_URL }}
                 onMessage={handleMessage}
             />
-
             <Modal
                 visible={sheetVisible}
                 transparent
